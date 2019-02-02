@@ -4,9 +4,6 @@
 #include "state.hpp"
 
 
-typedef void (*func)();
-
-
 class StateMachine {
     public:
         StateMachine(State *initState);

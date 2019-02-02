@@ -1,5 +1,4 @@
 #include "stateMachine.hpp"
-#include <iostream>
 
 
 StateMachine::StateMachine(State *initState) {
