@@ -13,6 +13,7 @@ State *StateMachine::getCurrState() {
 
 bool StateMachine::run(event_t ev) {
     bool searching = true;
+    bool found = false;
     State *st = currState;
 
     while(searching) {
@@ -20,6 +21,7 @@ bool StateMachine::run(event_t ev) {
             if(tr.event == ev) {
                 /* Stop searching, found */
                 searching = false;
+                found = true;
                 currState = tr.nextState;
                 currState->getHandler()();
             }
@@ -32,4 +34,6 @@ bool StateMachine::run(event_t ev) {
             searching = false;
         }
     };
+
+    return found;
 }
