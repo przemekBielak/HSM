@@ -26,6 +26,11 @@ handler State::getHandler() {
 int State::addTransition(struct transition_t_ tr) {
     int ret = 0;
 
+    /* Return error if transition vector is full. No new transition will be added. */
+    if(transition.size() >= MAX_NUM_OF_TRANSITIONS) {
+        ret = -1;
+    }
+
     /* Return error if transition with event tr already exists. */
     for(auto const& i: transition) {
         std::cout << i.event << std::endl;
