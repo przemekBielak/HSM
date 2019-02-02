@@ -26,6 +26,14 @@ handler State::getHandler() {
 int State::addTransition(struct transition_t_ tr) {
     int ret = 0;
 
+    /* Return error if transition with event tr already exists. */
+    for(auto const& i: transition) {
+        std::cout << i.event << std::endl;
+        if(i.event == tr.event) {
+            ret = -1;
+        }
+    }
+
     if(ret == 0) {
         transition.push_back(tr);
     }
