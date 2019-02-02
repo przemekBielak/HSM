@@ -29,6 +29,9 @@ class State {
 
         State *getParent();
         handler getHandler();
+        std::vector<transition_t> getTransition(void);
+
+        int addTransition(transition_t tr);
 
     private:
         State *parent;

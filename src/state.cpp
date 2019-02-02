@@ -21,3 +21,13 @@ State *State::getParent() {
 handler State::getHandler() {
     return handler;
 }
+
+
+int State::addTransition(struct transition_t_ tr) {
+
+}
+
+
+std::vector<struct transition_t_> State::getTransition(void) {
+
+}
