@@ -14,15 +14,16 @@
 
 #include <vector>
 
+/** @brief Pointer to a handler function */
 typedef void (*handler)();
 typedef struct transition_t_ transition_t;
 
 
-/** @brief Configures maximum number of possible transitions for one state. */
+/** @brief Configures maximum number of possible transitions for one state */
  #define MAX_NUM_OF_TRANSITIONS   (4u)
 
 
-/** @brief Describes all possible events. */
+/** @brief Describes all possible events */
 typedef enum event_t_ {
     EV_NO_EVENT = 0u,
     EV_STARTUP,
@@ -34,8 +35,8 @@ typedef enum event_t_ {
 
 
 /**
- * @brief State is a node in linked list of states.
- * @details Each state has exactly one parent and 0-* transitions.
+ * @brief State is a node in linked list of states
+ * @details Each state has exactly one parent and 0-* transitions
  */
 class State {
     public:
