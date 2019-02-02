@@ -33,7 +33,6 @@ int State::addTransition(struct transition_t_ tr) {
 
     /* Return error if transition with event tr already exists. */
     for(auto const& i: transition) {
-        std::cout << i.event << std::endl;
         if(i.event == tr.event) {
             ret = -1;
         }
