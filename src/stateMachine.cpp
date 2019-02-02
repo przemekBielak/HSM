@@ -2,12 +2,12 @@
 
 
 StateMachine::StateMachine(State *initState) {
-
+    currState = initState;
 }
 
 
 State *StateMachine::getCurrState() {
-
+    return currState;
 }
 
 
