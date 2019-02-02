@@ -24,10 +24,16 @@ handler State::getHandler() {
 
 
 int State::addTransition(struct transition_t_ tr) {
+    int ret = 0;
 
+    if(ret == 0) {
+        transition.push_back(tr);
+    }
+
+    return ret;
 }
 
 
 std::vector<struct transition_t_> State::getTransition(void) {
-
+    return transition;
 }
