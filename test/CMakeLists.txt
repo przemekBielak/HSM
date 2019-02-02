@@ -7,6 +7,7 @@ add_executable(
     runTests 
     main.cpp
     stateMachineTest.cpp
+    stateTest.cpp
 )
 
 target_link_libraries(
