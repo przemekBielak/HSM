@@ -53,4 +53,19 @@ TEST_CASE("state addTransition getTransition") {
     REQUIRE(EV_STARTUP == stShutDown.getTransition().back().event);
     REQUIRE(&stStartUp == stShutDown.getTransition().back().nextState);
     REQUIRE(err3 == -1);
+
+    int err4 = stShutDown.addTransition({EV_START_PLAYING, &stShutDown});
+    REQUIRE(err4 == 0);
+
+    int err5 = stShutDown.addTransition({EV_STOP_PLAYING, &stShutDown});
+    REQUIRE(err5 == 0);
+
+    int err6 = stShutDown.addTransition({EV_SHUTDOWN, &stShutDown});
+    REQUIRE(err6 == 0);
+
+    /* transition vector is full, do not add new elements and return error */
+    int err7 = stShutDown.addTransition({EV_NO_EVENT, &stShutDown});
+    REQUIRE(EV_SHUTDOWN == stShutDown.getTransition().back().event);
+    REQUIRE(&stShutDown == stShutDown.getTransition().back().nextState);
+    REQUIRE(err7 == -1);
 }
