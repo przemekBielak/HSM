@@ -11,7 +11,7 @@ State *StateMachine::getCurrState() {
 }
 
 
-void StateMachine::run(event_t ev) {
+bool StateMachine::run(event_t ev) {
     bool searching = true;
     State *st = currState;
 

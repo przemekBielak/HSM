@@ -9,7 +9,7 @@ class StateMachine {
         StateMachine(State *initState);
         State *getCurrState();
 
-        void run(event_t ev) ;
+        bool run(event_t ev) ;
 
     private:
         State *currState;
