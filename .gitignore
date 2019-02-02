@@ -3,3 +3,6 @@
 
 # editor files
 .vscode
+
+# generated Doxygen documentation
+/doc
