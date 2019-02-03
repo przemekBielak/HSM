@@ -9,17 +9,17 @@ void onStartup(void) {}
 
 
 TEST_CASE("state getParent") {
-    State stIdle        (NULL,           &onIdle);
+    State stIdle        (nullptr,           &onIdle);
     State stShutDown    (&stIdle,        &onShutdown);
     State stStartUp     (&stIdle,        &onStartup);
 
-    REQUIRE(stIdle.getParent() == NULL);
+    REQUIRE(stIdle.getParent() == nullptr);
     REQUIRE(stShutDown.getParent() == &stIdle);
     REQUIRE(stStartUp.getParent() == &stIdle);
 }
 
 TEST_CASE("state getHandler") {
-    State stIdle        (NULL,           &onIdle);
+    State stIdle        (nullptr,           &onIdle);
     State stShutDown    (&stIdle,        &onShutdown);
     State stStartUp     (&stIdle,        &onStartup);
 
@@ -29,7 +29,7 @@ TEST_CASE("state getHandler") {
 }
 
 TEST_CASE("state addTransition getTransition") {
-    State stIdle        (NULL,           &onIdle);
+    State stIdle        (nullptr,           &onIdle);
     State stShutDown    (&stIdle,        &onShutdown);
     State stStartUp     (&stIdle,        &onStartup);
 

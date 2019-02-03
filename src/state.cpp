@@ -13,41 +13,41 @@
 #include <iostream>
 
 
-State::State(State *parent_, void(*handler_)()) {
-    parent = parent_;
-    handler = handler_;
+State::State(State * const parent, void(*handler)()) {
+    m_parent = parent;
+    m_handler = handler;
     /* Reserve vector size to avoid dynamic memory allocation (vector resizing). */
-    transition.reserve(MAX_NUM_OF_TRANSITIONS);
+    m_transition.reserve(MAX_NUM_OF_TRANSITIONS);
 }
 
 
 State *State::getParent() {
-    return parent;
+    return m_parent;
 }
 
 
 handler State::getHandler() {
-    return handler;
+    return m_handler;
 }
 
 
-stateError_t State::addTransition(struct transition_t_ tr) {
+stateError_t State::addTransition(const transition_t transition) {
     stateError_t err = NO_ERROR;
 
     /* Return error if transition vector is full. No new transition will be added. */
-    if(transition.size() >= MAX_NUM_OF_TRANSITIONS) {
+    if(m_transition.size() >= MAX_NUM_OF_TRANSITIONS) {
         err = TRANSITION_QUEUE_FULL;
     }
 
     /* Return error if transition with event tr already exists. */
-    for(auto const& i: transition) {
-        if(i.event == tr.event) {
+    for(auto const& i: m_transition) {
+        if(i.event == transition.event) {
             err = TRANSITION_ALREADY_EXISTS;
         }
     }
 
     if(err == NO_ERROR) {
-        transition.push_back(tr);
+        m_transition.push_back(transition);
     }
 
     return err;
@@ -55,5 +55,5 @@ stateError_t State::addTransition(struct transition_t_ tr) {
 
 
 std::vector<struct transition_t_> State::getTransition(void) {
-    return transition;
+    return m_transition;
 }

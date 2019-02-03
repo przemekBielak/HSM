@@ -7,18 +7,18 @@ void func3(void) {}
 void func4(void) {}
 
 TEST_CASE("stateMachine getCurrState") {
-    State stStartUp(NULL, &func3);
+    State stStartUp(nullptr, &func3);
 
     StateMachine sm(&stStartUp);
     REQUIRE(sm.getCurrState() == &stStartUp);
 
-    StateMachine sm2(NULL);
-    REQUIRE(sm2.getCurrState() == NULL);
+    StateMachine sm2(nullptr);
+    REQUIRE(sm2.getCurrState() == nullptr);
 }
 
 TEST_CASE("stateMachine run") {
-    State stPlaying     (NULL,           &func4);
-    State stNotPlaying  (NULL,           &func3);
+    State stPlaying     (nullptr,           &func4);
+    State stNotPlaying  (nullptr,           &func3);
     State stIdle        (&stPlaying,     &func1);
     State stShutDown    (&stIdle,        &func2);
     State stStartUp     (&stIdle,        &func3);

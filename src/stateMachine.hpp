@@ -25,7 +25,7 @@ class StateMachine {
          * 
          * @param initState Pointer to initial state
          */
-        StateMachine(State *initState);
+        StateMachine(State * const initState);
 
         /**
          * @brief Get the current state object
@@ -41,14 +41,14 @@ class StateMachine {
          * @return true     event found
          * @return false    event not found
          */
-        bool run(event_t ev) ;
+        bool run(const event_t event) ;
 
     private:
         /**
          * @brief Current state
          * 
          */
-        State *currState;
+        State *m_currState;
 };
 
 #endif // #ifndef STATEMACHINE_H

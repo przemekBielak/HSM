@@ -28,11 +28,10 @@ void onNotPlaying(void) {
 }
 
 int main(void) {
-    std::queue<event_t> eventQueue;
-
+    
     /* State             Parent       Handler */
-    State stShutDown    (NULL,        &onShutdown);
-    State stStart       (NULL,        &onStartup);
+    State stShutDown    (nullptr,     &onShutdown);
+    State stStart       (nullptr,     &onStartup);
     State stNotPlaying  (&stStart,    &onNotPlaying);
     State stPlaying     (&stStart,    &onPlaying);
 
@@ -42,11 +41,12 @@ int main(void) {
     stStart.addTransition       ({EV_SHUTDOWN,      &stShutDown});
     stShutDown.addTransition    ({EV_STARTUP,       &stPlaying});
 
-    StateMachine sm(&stPlaying);
-
+    std::queue<event_t> eventQueue;
     eventQueue.push(EV_STOP_PLAYING);
     eventQueue.push(EV_START_PLAYING);
     eventQueue.push(EV_SHUTDOWN);
+
+    StateMachine sm(&stPlaying);
 
     while(true) {
         if(!eventQueue.empty()) {

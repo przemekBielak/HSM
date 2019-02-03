@@ -40,7 +40,7 @@ class State {
          * @param parent pointer to a parent state
          * @param handler function which is called when state is active
          */
-        State(State *parent, void (*handler)());
+        State(State * const parent, handler);
 
         /**
          * @brief Get the Parent object
@@ -69,14 +69,14 @@ class State {
          * @param tr transition 
          * @return stateError_t 
          */
-        stateError_t addTransition(transition_t tr);
+        stateError_t addTransition(const transition_t transition);
 
     private:
         /** @brief Pointer to a parent state */
-        State *parent;
+        State *m_parent;
 
         /** @brief Handler function */
-        void(*handler)();
+        void(*m_handler)();
 
         /**
          * @brief Transition list
@@ -84,7 +84,7 @@ class State {
          * Size of vector is restricted to MAX_NUM_OF_TRANSITIONS, so dynamic resizing is not possible.
          * 
          */
-        std::vector<transition_t> transition;
+        std::vector<transition_t> m_transition;
 };
 
 /**
