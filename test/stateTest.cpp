@@ -33,39 +33,39 @@ TEST_CASE("state addTransition getTransition") {
     State stShutDown    (&stIdle,        &onShutdown);
     State stStartUp     (&stIdle,        &onStartup);
 
-    int err1 = stIdle.addTransition({EV_NO_EVENT, &stIdle});
+    stateError_t err1 = stIdle.addTransition({EV_NO_EVENT, &stIdle});
     REQUIRE(EV_NO_EVENT == stIdle.getTransition().back().event);
     REQUIRE(&stIdle == stIdle.getTransition().back().nextState);
-    REQUIRE(err1 == 0);
+    REQUIRE(err1 == NO_ERROR);
 
-    int err2 = stStartUp.addTransition({EV_SHUTDOWN, &stShutDown});
+    stateError_t err2 = stStartUp.addTransition({EV_SHUTDOWN, &stShutDown});
     REQUIRE(EV_SHUTDOWN == stStartUp.getTransition().back().event);
     REQUIRE(&stShutDown == stStartUp.getTransition().back().nextState);
-    REQUIRE(err2 == 0);
+    REQUIRE(err2 == NO_ERROR);
 
-    int err3 = stShutDown.addTransition({EV_STARTUP,         &stStartUp});
+    stateError_t err3 = stShutDown.addTransition({EV_STARTUP,         &stStartUp});
     REQUIRE(EV_STARTUP == stShutDown.getTransition().back().event);
     REQUIRE(&stStartUp == stShutDown.getTransition().back().nextState);
-    REQUIRE(err3 == 0);
+    REQUIRE(err3 == NO_ERROR);
 
     /* Event already exists, do not add new elements and return error */
     err3 = stShutDown.addTransition({EV_STARTUP, &stShutDown});
     REQUIRE(EV_STARTUP == stShutDown.getTransition().back().event);
     REQUIRE(&stStartUp == stShutDown.getTransition().back().nextState);
-    REQUIRE(err3 == -1);
+    REQUIRE(err3 == TRANSITION_ALREADY_EXISTS);
 
-    int err4 = stShutDown.addTransition({EV_START_PLAYING, &stShutDown});
-    REQUIRE(err4 == 0);
+    stateError_t err4 = stShutDown.addTransition({EV_START_PLAYING, &stShutDown});
+    REQUIRE(err4 == NO_ERROR);
 
-    int err5 = stShutDown.addTransition({EV_STOP_PLAYING, &stShutDown});
-    REQUIRE(err5 == 0);
+    stateError_t err5 = stShutDown.addTransition({EV_STOP_PLAYING, &stShutDown});
+    REQUIRE(err5 == NO_ERROR);
 
-    int err6 = stShutDown.addTransition({EV_SHUTDOWN, &stShutDown});
-    REQUIRE(err6 == 0);
+    stateError_t err6 = stShutDown.addTransition({EV_SHUTDOWN, &stShutDown});
+    REQUIRE(err6 == NO_ERROR);
 
     /* transition vector is full, do not add new elements and return error */
-    int err7 = stShutDown.addTransition({EV_NO_EVENT, &stShutDown});
+    stateError_t err7 = stShutDown.addTransition({EV_NO_EVENT, &stShutDown});
     REQUIRE(EV_SHUTDOWN == stShutDown.getTransition().back().event);
     REQUIRE(&stShutDown == stShutDown.getTransition().back().nextState);
-    REQUIRE(err7 == -1);
+    REQUIRE(err7 == TRANSITION_QUEUE_FULL);
 }

@@ -1,3 +1,14 @@
+/**
+ * @file state.cpp
+ * @author Przemyslaw Bielak (przemyslaw.bielak@protonmail.com)
+ * @brief Implementation of State class.
+ * @version 0.1
+ * @date 2019-02-03
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include "state.hpp"
 #include <iostream>
 
@@ -20,26 +31,26 @@ handler State::getHandler() {
 }
 
 
-int State::addTransition(struct transition_t_ tr) {
-    int ret = 0;
+stateError_t State::addTransition(struct transition_t_ tr) {
+    stateError_t err = NO_ERROR;
 
     /* Return error if transition vector is full. No new transition will be added. */
     if(transition.size() >= MAX_NUM_OF_TRANSITIONS) {
-        ret = -1;
+        err = TRANSITION_QUEUE_FULL;
     }
 
     /* Return error if transition with event tr already exists. */
     for(auto const& i: transition) {
         if(i.event == tr.event) {
-            ret = -1;
+            err = TRANSITION_ALREADY_EXISTS;
         }
     }
 
-    if(ret == 0) {
+    if(err == NO_ERROR) {
         transition.push_back(tr);
     }
 
-    return ret;
+    return err;
 }
 
 

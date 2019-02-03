@@ -1,3 +1,14 @@
+/**
+ * @file stateMachine.cpp
+ * @author Przemyslaw Bielak (przemyslaw.bielak@protonmail.com)
+ * @brief Implementation of StateMachine class.
+ * @version 0.1
+ * @date 2019-02-03
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include "stateMachine.hpp"
 
 

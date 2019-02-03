@@ -1,6 +1,18 @@
+/**
+ * @file main.cpp
+ * @author Przemyslaw Bielak (przemyslaw.bielak@protonmail.com)
+ * @brief Example usage of HSM.
+ * @version 0.1
+ * @date 2019-02-03
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <iostream>
 #include <queue>
 #include "stateMachine.hpp"
+#include "state.hpp"
 
 void onShutdown(void) {
     std::cout << "Shut down state" << std::endl;
@@ -40,6 +52,9 @@ int main(void) {
         if(!eventQueue.empty()) {
             event_t nextEvent = eventQueue.front();
             eventQueue.pop();
+
+            /* sm.run doesn't rely on a fixed interfaces. Next event can be provided by any function/queue, etc. 
+             * In this case, std::queue was used. */
             sm.run(nextEvent);
         }
     }

@@ -22,6 +22,12 @@ typedef struct transition_t_ transition_t;
 /** @brief Configures maximum number of possible transitions for one state */
  #define MAX_NUM_OF_TRANSITIONS   (4u)
 
+/** @brief State class error codes */
+typedef enum stateError_t_ {
+    NO_ERROR = 0u,
+    TRANSITION_QUEUE_FULL,
+    TRANSITION_ALREADY_EXISTS
+}stateError_t;
 
 /** @brief Describes all possible events */
 typedef enum event_t_ {
@@ -73,11 +79,9 @@ class State {
          * @brief Add new transition 
          * 
          * @param tr transition 
-         * @return int 
-         * @retval  0 OK
-         * @retval -1 NOK
+         * @return stateError_t 
          */
-        int addTransition(transition_t tr);
+        stateError_t addTransition(transition_t tr);
 
     private:
         /** @brief Pointer to a parent state */

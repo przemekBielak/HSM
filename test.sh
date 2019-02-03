@@ -5,5 +5,3 @@ cd build
 cmake ..
 make
 ./test/runTests
-
-valgrind ./src/out
