@@ -12,6 +12,7 @@ add_library(
     stateMachine.hpp
     state.cpp
     state.hpp
+    state_cfg.hpp
 )
 
 add_executable(
