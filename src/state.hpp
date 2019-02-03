@@ -13,14 +13,12 @@
 #define STATE_H
 
 #include <vector>
+#include "state_cfg.hpp"
 
 /** @brief Pointer to a handler function */
 typedef void (*handler)();
 typedef struct transition_t_ transition_t;
 
-
-/** @brief Configures maximum number of possible transitions for one state */
- #define MAX_NUM_OF_TRANSITIONS   (4u)
 
 /** @brief State class error codes */
 typedef enum stateError_t_ {
@@ -28,16 +26,6 @@ typedef enum stateError_t_ {
     TRANSITION_QUEUE_FULL,
     TRANSITION_ALREADY_EXISTS
 }stateError_t;
-
-/** @brief Describes all possible events */
-typedef enum event_t_ {
-    EV_NO_EVENT = 0u,
-    EV_STARTUP,
-    EV_SHUTDOWN,
-    EV_START_PLAYING,
-    EV_STOP_PLAYING,
-    NUM_OF_EVENTS
-}event_t;
 
 
 /**
