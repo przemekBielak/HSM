@@ -43,12 +43,6 @@ class State {
         /**
          * @brief Construct a new State object
          * 
-         */
-        State();
-
-        /**
-         * @brief Construct a new State object
-         * 
          * @param parent pointer to a parent state
          * @param handler function which is called when state is active
          */
