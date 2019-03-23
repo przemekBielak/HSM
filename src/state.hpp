@@ -42,6 +42,8 @@ class State {
          */
         State(State * const parent, handler);
 
+        ~State();
+
         /**
          * @brief Get the Parent object
          * 
